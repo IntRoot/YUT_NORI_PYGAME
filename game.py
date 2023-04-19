@@ -43,7 +43,7 @@ class App:
             current_screen = screen.next_screen
             self.persistent = screen.persistent
 
-         
+            
 
 
 if __name__ == "__main__":

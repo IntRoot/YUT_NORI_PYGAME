@@ -83,6 +83,7 @@ def main():
         # redirect to base game page when game start button is clicked
         if screen.next_screen == "game":
             screen = GameScreen(window)
+            
 
      
         

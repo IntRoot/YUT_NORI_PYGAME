@@ -37,7 +37,6 @@ class Token:
             elif self.current_position in self.board.right_diagonal:
                 # token is in right diagonal route
                 self.current_position_idx = self.board.right_diagonal.index(self.current_position)
-                # get index of current position
                 if (self.current_position_idx) < moves:
                     # if token will reache the end of right diagonal route (left bottom corner, 150,600), and past to original path agan
                     lefted_moves=moves-(self.current_position_idx+1)
@@ -48,14 +47,13 @@ class Token:
                 else:
                     #if token will still be in right diagonal after move
                     self.current_position = self.board.right_diagonal[self.current_position_idx-moves]
-                print('right corner', self.current_position)
+                print('From right corner', self.current_position)
 
             elif self.current_position in self.board.left_diagonal:
-                ## overlapping with 150,100
                 print('left corner', self.current_position, self.in_game)
                 self.current_position_idx = self.board.left_diagonal.index(self.current_position)
                 # Token is at the end position on the diagonal path or transition point to horizontal path
-                if (self.current_position_idx+1) < moves and self.in_game == True:
+                if (self.current_position_idx-1) < moves:
                         ## end of left diagonal path is start point(goal position)
                     self.winner = self.player
                     return self.winner
@@ -73,8 +71,6 @@ class Token:
                 return self.winner
             self.current_position=self.board.piece_positions[self.current_position_idx]
         print('new position', self.current_position)
-## horizontal to end gives winner
-
 
     def draw(self):
         x, y = self.current_position
@@ -85,8 +81,3 @@ class Token:
 
 # /if it reach end of index, token go back to piece_position path. right path goes to right corner's index of pieice position and move based on their moves.
 #             if left path and cenrtal path reach the end of index, token go back to piece_position path[0], steart point
-
-# ##
-# token should move along disagonnial line when it arrives at the left top(150, 100) and right top corner (650, 100).  token also should transit into dignoanl path to piece_position when it arrive or reach the end of diagnoial path and past to piece_position path. transition point would be (150, 600). for example, if token moves from center and if its moves parameter is 4, token should move 3 in diagoanl path until it reach the end of it and move on the piece_position path for 1 space. write move method based on info and array. additionnally, if token on right_diagonal arrives at center, it should transit to left_diagonal array from then.
-## end of line to left corener
-## tiger does not move from (650, 400)

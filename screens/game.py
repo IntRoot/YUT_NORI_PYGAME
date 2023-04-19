@@ -25,7 +25,7 @@ class GameScreen(BaseScreen):
         self.current_token_pos = 0
         self.tokens = []
         self.players = ['tiger', 'user']
-        self.current_player_idx = 0 
+        self.current_player_idx = 1
         self.init_tokens()
         self.opponent_tiger = Player(self.board, self.tokens[0])
         self.user = Player(self.board, self.tokens[1])
