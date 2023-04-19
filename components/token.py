@@ -53,14 +53,16 @@ class Token:
                 print('left corner', self.current_position, self.in_game)
                 self.current_position_idx = self.board.left_diagonal.index(self.current_position)
                 # Token is at the end position on the diagonal path or transition point to horizontal path
-                if (self.current_position_idx-1) < moves:
+                if (self.current_position_idx - moves+1) <= 0:
                         ## end of left diagonal path is start point(goal position)
                     self.winner = self.player
                     return self.winner
                 else:
                     self.current_position = self.board.left_diagonal[self.current_position_idx-moves]
-
-
+                    
+        elif self.current_position == (650,600) and (self.in_game == True) and (moves > 0):
+                self.winner = self.player
+                return self.winner
         else:
             print('normal')
             # Token is on the board, move forward by the number of moves

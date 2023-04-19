@@ -65,7 +65,6 @@ class GameScreen(BaseScreen):
                     self.back_button = Button(600, 100, "Back to Welcome Screen")
                     self.back_button.rect.x = (self.screen.get_width() // 2) - (self.back_button.rect.width // 2)
                     self.back_button.rect.y = (self.screen.get_height() // 2) + 100
-                    self.back_button.update()
                     self.screen.blit(self.back_button.image, self.back_button.rect)
                     pygame.display.update()
       
