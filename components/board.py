@@ -1,7 +1,8 @@
 import pygame
 import os
-
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+
 
 
 class YutNoriBoard:
@@ -12,7 +13,7 @@ class YutNoriBoard:
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.center_position = (400, 350)
         self.piece_positions = []
-        self.event_positions = []  
+        self.event_positions = [(400, 350),(150, 100),(650, 100), (400, 350), (150, 600)]  
         self.left_diagonal = []
         self.right_diagonal = []
 
@@ -23,24 +24,22 @@ class YutNoriBoard:
             self.piece_positions.append((650 - i * 100, 600))
   
     
-        self.event_positions.append((150, 600))
+
         ## bottom left
         for i in range(4):
             self.piece_positions.append((150, 500 - i * 100))
 
         for i in range(6):
             self.piece_positions.append((150 + i * 100, 100))
-        self.event_positions.append((150, 100))
+
         ##top-left
         
 
-        # # add diagonal shortcut
-        # self.event_positions.append((400, 350))
       
         for i in range(4):
             self.piece_positions.append((650, 200 + i * 100))
         self.piece_positions.append((650, 600))
-        self.event_positions.append((650, 100))
+
 
         ## top right corner
 
@@ -72,16 +71,7 @@ class YutNoriBoard:
       
 
 
-    def check_for_event(self, position):
-        if position in self.event_positions:
-            self.draw_card()
-
-    def draw_card(self):
-        card = self.card_deck.pop(0)
-        card_image = pygame.transform.scale(pygame.image.load(os.path.join(parent_dir, 'images', 'cards', card)), (200, 200))
-        self.screen.blit(card_image, (self.width / 2 - 100, self.height / 2 - 100))
-        pygame.display.flip()
-        pygame.time.wait(3000)
+  
 
     def draw(self):
         pass

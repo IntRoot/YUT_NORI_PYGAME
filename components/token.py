@@ -1,9 +1,10 @@
 import pygame
 import os
+
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 from components.board import YutNoriBoard
-from components.textbox import TextBox
-from components.button import Button
+from components.cards import Card
+
 class Token:
     def __init__(self, width, height, image, player):
         self.width = width
@@ -15,6 +16,7 @@ class Token:
         self.in_game = False
         self.winner =''
         self.player = player
+        self.card = Card(self.screen)
         self.image =  pygame.transform.scale(pygame.image.load(os.path.join(parent_dir, 'images', image) ), (75, 75)) 
         
         
@@ -84,9 +86,14 @@ class Token:
         x -= self.width / 2
         y -= self.height / 2
         self.screen.blit(self.image, (x, y))
+        self.check_for_event()
 
     def collides_with(self, other_token):
         return self.current_position == other_token.current_position
+    
+    def check_for_event(self):
+        if self.current_position in self.board.event_positions and self.player == 'user':
+            self.card.draw_card()
 
 # /if it reach end of index, token go back to piece_position path. right path goes to right corner's index of pieice position and move based on their moves.
 #             if left path and cenrtal path reach the end of index, token go back to piece_position path[0], steart point

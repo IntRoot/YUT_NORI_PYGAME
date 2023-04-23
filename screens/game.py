@@ -107,7 +107,13 @@ class GameScreen(BaseScreen):
                 self.yut_game.draw(self.screen, self.players[self.current_player_idx])
                 pygame.display.update()
                 pygame.time.delay(1000)
-    
+                textbox = TextBox('one more chance to roll', size=(100, 60), font_size=24, bg_color='white',
+                            text_color='black')
+
+                textbox.rect.x = 800
+                textbox.rect.y = 400
+                textbox.update()
+                self.screen.blit(textbox.image, textbox.rect)
             self.user_played = True
 
             if self.tokens[1].collides_with(self.tokens[0]):
