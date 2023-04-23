@@ -63,6 +63,9 @@ class WelcomeScreen(BaseScreen):
             # # Button 2 clicked
             if self.button2.rect.collidepoint(event.pos):
                 self.persistent["welcome_button_clicked"] = 2
+                import webbrowser
+                rule_url = ''
+                webbrowser.open(url, new=2)
 
 
 def main():

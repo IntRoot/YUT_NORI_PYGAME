@@ -22,6 +22,7 @@ class Token:
     
 
     def move(self, moves):
+        print(moves, self.player)
         # Move the token based on the number of moves given
         print('moved from', self.current_position)
         if self.current_position not in self.board.piece_positions or self.current_position == (150,100) or self.current_position == (650,100):
@@ -30,9 +31,14 @@ class Token:
             # Token is at an event position
             if self.current_position == (400, 350):
                 print('center')
-                ## if token arrived at center, it takes left diagonal route 
                 self.current_position_idx = self.board.left_diagonal.index((400, 350))
-                self.current_position = self.board.left_diagonal[self.current_position_idx-moves]
+                if (self.current_position_idx - moves+1) <= 0:
+                        ## end of left diagonal path is start point(goal position)
+                    self.winner = self.player
+                    return self.winner
+                else:
+                ## if token arrived at center, it takes left diagonal route 
+                    self.current_position = self.board.left_diagonal[self.current_position_idx-moves]
 
             elif self.current_position in self.board.right_diagonal:
                 # token is in right diagonal route
@@ -64,7 +70,6 @@ class Token:
                 self.winner = self.player
                 return self.winner
         else:
-            print('normal')
             # Token is on the board, move forward by the number of moves
             self.current_position_idx = self.board.piece_positions.index(self.current_position) + moves
             self.in_game = True
@@ -80,6 +85,8 @@ class Token:
         y -= self.height / 2
         self.screen.blit(self.image, (x, y))
 
+    def collides_with(self, other_token):
+        return self.current_position == other_token.current_position
 
 # /if it reach end of index, token go back to piece_position path. right path goes to right corner's index of pieice position and move based on their moves.
 #             if left path and cenrtal path reach the end of index, token go back to piece_position path[0], steart point
