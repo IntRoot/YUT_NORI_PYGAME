@@ -64,8 +64,8 @@ class WelcomeScreen(BaseScreen):
             if self.button2.rect.collidepoint(event.pos):
                 self.persistent["welcome_button_clicked"] = 2
                 import webbrowser
-                rule_url = ''
-                webbrowser.open(url, new=2)
+                rule_url = 'https://github.com/IntRoot/YUT_NORI_PYGAME/blob/master/pygame.md'
+                webbrowser.open(rule_url, new=2)
 
 
 def main():
